@@ -266,20 +266,20 @@ h3,.h3{font-family:var(--display);font-weight:600;letter-spacing:-.02em;line-hei
   font-size:1.25rem;line-height:1.35;margin:0 0 26px}
 
 /* the credibility anchor: the number the quote is actually claiming */
-.quote-result{
-  margin-top:auto;padding-top:22px;border-top:1px solid var(--line);
-  display:flex;align-items:baseline;gap:12px;
-}
-.qr-n{font-family:var(--display);font-weight:400;letter-spacing:-.03em;line-height:1;
-  font-size:clamp(1.75rem,2.4vw,2.125rem);color:var(--accent-ink);white-space:nowrap;
+/* stacked like the .stat block in design.md: hairline rule, numeral, mono caption */
+.quote-result{margin-top:auto;padding-top:22px;border-top:1px solid var(--line)}
+.qr-n{display:block;font-family:var(--display);font-weight:400;letter-spacing:-.03em;
+  line-height:1;font-size:clamp(2rem,2.8vw,2.5rem);color:var(--accent-ink);
   font-variant-numeric:tabular-nums}
-.qr-c{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;
-  line-height:1.4;color:var(--ink-3)}
+.qr-c{display:block;margin-top:12px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.07em;text-transform:uppercase;line-height:1.45;color:var(--ink-3);
+  max-width:26ch}
 
 .quote .who{display:flex;align-items:center;gap:12px;margin-top:22px;
-  font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink-3)}
-.quote .who b{display:block;color:var(--ink);font-weight:600;margin-bottom:3px;
-  letter-spacing:.06em}
+  font-family:var(--body);font-size:14px;line-height:1.4;letter-spacing:0;
+  color:var(--ink-3)}
+.quote .who b{display:block;color:var(--ink);font-weight:600;margin-bottom:2px;
+  letter-spacing:-.01em}
 .who-face{width:40px;height:40px;flex:0 0 40px;object-fit:cover;
   border:1px solid var(--line);background:var(--surface-soft)}
 
