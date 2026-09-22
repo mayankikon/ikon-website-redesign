@@ -1,0 +1,5 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated sales manager figure">
+<rect width="120" height="120" fill="#052E3A"/>
+<path d="M24 120 L32 88 L88 88 L96 120 Z" fill="#CFDAD8" fill-opacity=".92"/>
+<circle cx="60" cy="48" r="21" fill="#CFDAD8"/>
+<path d="M39 44 a21 21 0 0 1 42 0 l0 -6 a21 21 0 0 0 -42 0 Z" fill="#052E3A" fill-opacity=".55"/><polygon points="60,88 66,96 60,118 54,96" fill="#17CF60"/><path d="M50 88 L60 98 L70 88" fill="none" stroke="#052E3A" stroke-opacity=".5" stroke-width="2"/></svg>

@@ -1,0 +1,5 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated dealer principal figure">
+<rect width="120" height="120" fill="#052E3A"/>
+<path d="M24 120 L32 88 L88 88 L96 120 Z" fill="#CFDAD8" fill-opacity=".92"/>
+<circle cx="60" cy="48" r="21" fill="#CFDAD8"/>
+<path d="M39 44 a21 21 0 0 1 42 0 l0 -6 a21 21 0 0 0 -42 0 Z" fill="#052E3A" fill-opacity=".55"/><polygon points="48,88 60,100 52,120 38,120" fill="#052E3A" fill-opacity=".42"/><polygon points="72,88 60,100 68,120 82,120" fill="#052E3A" fill-opacity=".42"/><rect x="76" y="100" width="10" height="7" fill="#17CF60"/></svg>
