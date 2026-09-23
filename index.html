@@ -21,6 +21,13 @@
   <symbol id="i-arrow-left" viewBox="0 0 24 24">
     <path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>
   </symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24">
+    <rect x="6" y="4" width="4" height="16" rx="1"/>
+    <rect x="14" y="4" width="4" height="16" rx="1"/>
+  </symbol>
+  <symbol id="i-play" viewBox="0 0 24 24">
+    <path d="m6 3 14 9-14 9z"/>
+  </symbol>
   <symbol id="i-layers" viewBox="0 0 24 24">
     <path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"/>
     <path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"/>
@@ -312,7 +319,7 @@
         of the people who run those departments.</p>
     </div>
     <div class="testimonial" data-testimonials aria-roledescription="carousel" aria-label="Dealer results">
-      <div class="testimonial-viewport" aria-live="polite">
+      <div class="testimonial-viewport" aria-live="off">
         <div class="testimonial-track">
           <article class="quote" data-slide aria-label="1 of 3">
             <figure class="quote-media">
@@ -374,6 +381,11 @@
           </div>
         </div>
         <div class="testimonial-arrows">
+          <button class="testimonial-toggle" type="button" data-slide-toggle
+                  aria-label="Pause testimonial rotation" aria-pressed="false">
+            <svg class="icon" data-pause-icon aria-hidden="true"><use href="#i-pause"/></svg>
+            <svg class="icon" data-play-icon aria-hidden="true"><use href="#i-play"/></svg>
+          </button>
           <button type="button" data-slide-prev aria-label="Previous testimonial">
             <span class="control-arrow control-arrow-left" aria-hidden="true"><svg class="icon"><use href="#i-arrow-left"/></svg></span>
           </button>
@@ -543,8 +555,34 @@
       slides=Array.prototype.slice.call(carousel.querySelectorAll('[data-slide]')),
       dots=Array.prototype.slice.call(carousel.querySelectorAll('[data-slide-to]')),
       currentSlideLabel=carousel.querySelector('[data-current-slide]'),
+      rotationToggle=carousel.querySelector('[data-slide-toggle]'),
+      reducedMotion=matchMedia('(prefers-reduced-motion:reduce)'),
       swipeStartX,
+      rotationTimer,
+      isCarouselVisible=false,
+      isRotationPaused=reducedMotion.matches,
       currentIndex=0;
+  function stopRotation(){
+    if(rotationTimer)clearTimeout(rotationTimer);
+    rotationTimer=undefined;
+  }
+  function scheduleRotation(){
+    stopRotation();
+    if(isRotationPaused||document.hidden||!isCarouselVisible)return;
+    rotationTimer=setTimeout(function(){
+      showSlide(currentIndex+1);
+    },6500);
+  }
+  function setRotationPaused(shouldPause){
+    isRotationPaused=shouldPause;
+    rotationToggle.setAttribute('aria-pressed',shouldPause?'true':'false');
+    rotationToggle.setAttribute(
+      'aria-label',
+      shouldPause?'Play testimonial rotation':'Pause testimonial rotation'
+    );
+    if(shouldPause)stopRotation();
+    else scheduleRotation();
+  }
   function showSlide(nextIndex){
     currentIndex=(nextIndex+slides.length)%slides.length;
     track.style.transform='translateX(-'+(currentIndex*100)+'%)';
@@ -558,15 +596,30 @@
       else dot.removeAttribute('aria-current');
     });
     currentSlideLabel.textContent=String(currentIndex+1).padStart(2,'0');
+    scheduleRotation();
   }
   dots.forEach(function(dot){
-    dot.addEventListener('click',function(){showSlide(Number(dot.dataset.slideTo))});
+    dot.addEventListener('click',function(){
+      setRotationPaused(true);
+      showSlide(Number(dot.dataset.slideTo));
+    });
   });
-  carousel.querySelector('[data-slide-prev]').addEventListener('click',function(){showSlide(currentIndex-1)});
-  carousel.querySelector('[data-slide-next]').addEventListener('click',function(){showSlide(currentIndex+1)});
+  carousel.querySelector('[data-slide-prev]').addEventListener('click',function(){
+    setRotationPaused(true);showSlide(currentIndex-1);
+  });
+  carousel.querySelector('[data-slide-next]').addEventListener('click',function(){
+    setRotationPaused(true);showSlide(currentIndex+1);
+  });
+  rotationToggle.addEventListener('click',function(){
+    setRotationPaused(!isRotationPaused);
+  });
   carousel.addEventListener('keydown',function(event){
-    if(event.key==='ArrowLeft'){event.preventDefault();showSlide(currentIndex-1)}
-    if(event.key==='ArrowRight'){event.preventDefault();showSlide(currentIndex+1)}
+    if(event.key==='ArrowLeft'){
+      event.preventDefault();setRotationPaused(true);showSlide(currentIndex-1);
+    }
+    if(event.key==='ArrowRight'){
+      event.preventDefault();setRotationPaused(true);showSlide(currentIndex+1);
+    }
   });
   carousel.addEventListener('pointerdown',function(event){
     if(event.pointerType==='touch')swipeStartX=event.clientX;
@@ -576,9 +629,22 @@
     var swipeDistance=event.clientX-swipeStartX;
     swipeStartX=undefined;
     if(Math.abs(swipeDistance)<45)return;
+    setRotationPaused(true);
     showSlide(currentIndex+(swipeDistance<0?1:-1));
   });
   carousel.addEventListener('pointercancel',function(){swipeStartX=undefined});
+  document.addEventListener('visibilitychange',scheduleRotation);
+  new IntersectionObserver(function(entries){
+    isCarouselVisible=entries[0].isIntersecting;
+    scheduleRotation();
+  },{threshold:.35}).observe(carousel);
+  reducedMotion.addEventListener('change',function(event){
+    setRotationPaused(event.matches);
+  });
+  if(isRotationPaused){
+    rotationToggle.setAttribute('aria-pressed','true');
+    rotationToggle.setAttribute('aria-label','Play testimonial rotation');
+  }
   showSlide(0);
 })();
 </script>

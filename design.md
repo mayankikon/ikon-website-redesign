@@ -10,8 +10,8 @@ The Ikon homepage now follows the live Agave page architecture as well as these
 tokens. The current implementation is in `styles-agave.css` and uses:
 
 - a persistent announcement ribbon plus dark navigation stack;
-- full-bleed section bands with content held to a centered 1280px measure;
-- 90px-scale desktop display type with Geist as the licensed-font substitute;
+- full-bleed section bands with content held to a centered 1440px canvas;
+- 90px maximum hero display type set in Untitled Sans;
 - 18px × 36px primary CTA padding and square corners;
 - alternating copy/product-visual bands instead of a conventional card grid;
 - a dedicated dark, gridded proof section for headline metrics;
@@ -24,6 +24,20 @@ use compact icon motion and a numeric progress indicator, and touch users can
 swipe testimonials. Menu enter/exit motion follows Emil Kowalski's timing model
 (220ms enter, 160ms exit, ease-out). All motion is disabled under
 `prefers-reduced-motion`.
+
+The header and hero now follow the measured proportions of Agave's live desktop
+page more closely:
+
+- the 42px announcement ribbon and 74px navigation remain fixed over the hero;
+- navigation is transparent at the top of the page and transitions to
+  `rgba(12, 27, 49, .97)` after scrolling;
+- the content canvas is 1440px wide with responsive 84px maximum gutters;
+- Untitled Sans is the single family across display, body, navigation and labels;
+- the hero keeps Agave's pale-yellow eyebrow and primary CTA but stays on the
+  global type scale rather than an enlarged bespoke one;
+- testimonials advance horizontally every 6.5 seconds only while visible, expose
+  a pause/play control, stop after manual navigation, and default to paused under
+  `prefers-reduced-motion`.
 
 Iconography comes from [Lucide](https://lucide.dev/icons/) (ISC licensed), inlined
 as an SVG `<symbol>` sprite at the top of `index.html` and referenced with `<use>`.
@@ -99,6 +113,27 @@ PP Mori is a licensed face. A free substitute with the same geometric,
 low-contrast, slightly-condensed feel: **Geist** at weight 500, or
 *Schibsted Grotesk / Hanken Grotesk*.
 
+### Ikon substitution
+
+The Ikon build collapses all three roles onto a single family, **Untitled Sans**
+(Klim Type Foundry), and drops Geist entirely. `--body` and `--label` are both
+aliases of `--display`. The label role keeps its uppercase, letterspaced
+treatment but is no longer monospaced, so `--mono` was renamed `--label` to stop
+the token lying about what it holds.
+
+Only two weights are used anywhere: **Regular (400)** for body and display, and
+**Medium (500)** for buttons, labels, `h3` and inline emphasis. Bold stays
+declared in `@font-face` so a stray 700 request resolves to a real face instead
+of a synthesised one, but no rule asks for it. A `b, strong { font-weight: 500 }`
+reset keeps the UA default off inline emphasis.
+
+Klim's Medium trial cut installs under a separate `Test Untitled Sans` family
+name, so the 500 `@font-face` lists that PostScript name after the retail one.
+
+All three faces are wired up with `local()` only. They resolve for anyone with
+the font installed and fall back to system sans for everyone else — hosted
+`.woff2` files are still required before launch.
+
 ### Scale (desktop, root = 16px)
 
 | Step | Size | Weight | Tracking | Line-height |
@@ -120,7 +155,8 @@ as editorial rather than SaaS-generic.
 
 ## 4. Layout & spacing
 
-- Container: `max-width: 1280px`, side padding `24px` (`clamp(20px, 5vw, 40px)`).
+- Container: `max-width: 1440px`, side padding
+  `clamp(24px, 5.85vw, 84px)` (reduced at tablet and mobile breakpoints).
 - Section vertical padding: `clamp(72px, 10vw, 140px)`.
 - Grid: 12-col mentally; in practice 2-up (`1fr 1fr`), 3-up, and 4-up card rows
   with `1px` hairline gaps rather than large gutters — cards often share borders

@@ -1,4 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500;600&display=swap');
+/* Untitled Sans (Klim Type Foundry) carries the whole page: Regular for body and
+   display, Medium for anything that needs emphasis. Bold stays declared so a 700
+   request never gets synthesised, but nothing in the sheet asks for it.
+   Klim's Medium trial cut installs under its own "Test Untitled Sans" family, so
+   it needs a separate local() lookup ahead of the retail name.
+   Swap every src for hosted .woff2 files before launch: local() only resolves for
+   visitors who happen to have the font installed. */
+@font-face{
+  font-family:'Untitled Sans';
+  src:local('Untitled Sans'),local('UntitledSans-Regular');
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'Untitled Sans';
+  src:local('Untitled Sans Medium'),local('UntitledSans-Medium'),
+      local('Test Untitled Sans Medium'),local('TestUntitledSans-Medium');
+  font-weight:500;
+  font-style:normal;
+  font-display:swap;
+}
+@font-face{
+  font-family:'Untitled Sans';
+  src:local('Untitled Sans Bold'),local('UntitledSans-Bold');
+  font-weight:700;
+  font-style:normal;
+  font-display:swap;
+}
 
 :root{
   --white:#fff;
@@ -15,12 +43,17 @@
   --surface-2:#edf2ef;
   --line:#dfe5e1;
   --line-dark:rgba(255,255,255,.14);
-  --container:1280px;
-  --gutter:clamp(24px,4.5vw,72px);
+  --container:1440px;
+  --gutter:clamp(24px,5.85vw,84px);
   --section:clamp(88px,10vw,152px);
-  --display:'Geist',Arial,sans-serif;
-  --body:'Geist',Arial,sans-serif;
-  --mono:'Geist Mono',ui-monospace,SFMono-Regular,monospace;
+  /* Ribbon and nav are both fixed, so the hero offset and anchor offsets derive
+     from these rather than repeating the numbers. */
+  --ribbon-h:50px;
+  --nav-h:74px;
+  --display:'Untitled Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+  --body:var(--display);
+  /* Was Geist Mono. Still the small-caps label role, just no longer monospaced. */
+  --label:var(--display);
   --ease-out:cubic-bezier(.215,.61,.355,1);
   --ease-move:cubic-bezier(.645,.045,.355,1);
   --z-nav:50;
@@ -44,9 +77,11 @@ img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 button{font:inherit}
 h1,h2,h3,h4,p,figure,blockquote,ul{margin:0}
+/* The type scale tops out at Medium, so keep the UA default 700 off b/strong. */
+b,strong{font-weight:500}
 ul{list-style:none;padding:0}
 h1,h2,h3{text-wrap:balance}
-[id]{scroll-margin-top:138px}
+[id]{scroll-margin-top:calc(var(--ribbon-h) + var(--nav-h) + 8px)}
 
 /* Lucide icon sprite: the <symbol> definitions carry geometry, these rules carry the stroke. */
 .icon-sprite{display:none}
@@ -67,7 +102,7 @@ h1,h2,h3{text-wrap:balance}
 }
 .skip{
   position:fixed;left:20px;top:-80px;z-index:100;background:var(--green);
-  color:#000;font-weight:600;padding:12px 18px;transition:top 160ms ease-out
+  color:#000;font-weight:500;padding:12px 18px;transition:top 160ms ease-out
 }
 .skip:focus{top:12px}
 :focus-visible{outline:2px solid #000;outline-offset:3px}
@@ -92,27 +127,26 @@ h1,h2,h3{text-wrap:balance}
   display:block;
   margin-bottom:22px;
   color:var(--green-dark);
-  font-family:var(--mono);
+  font-family:var(--label);
   font-size:12px;
-  font-weight:600;
-  letter-spacing:.08em;
+  font-weight:700;
+  letter-spacing:.05em;
   line-height:1.35;
   text-transform:uppercase;
 }
-.eyebrow::before{content:"／ ";color:var(--green)}
 .hero .eyebrow,.numbers .eyebrow,.cta .eyebrow{color:#dff7df}
 
 h1{
   font-family:var(--display);
   font-size:clamp(4rem,6.25vw,5.625rem);
-  font-weight:300;
+  font-weight:400;
   letter-spacing:-.045em;
   line-height:1.01;
 }
 h2{
   font-family:var(--display);
   font-size:clamp(2.75rem,4.4vw,4rem);
-  font-weight:300;
+  font-weight:400;
   letter-spacing:-.04em;
   line-height:1.035;
 }
@@ -145,7 +179,7 @@ h3{
   cursor:pointer;
   font-family:var(--display);
   font-size:16px;
-  font-weight:600;
+  font-weight:500;
   line-height:1;
   gap:10px;
   transition:background-color 150ms ease,color 150ms ease,border-color 150ms ease,
@@ -178,7 +212,8 @@ h3{
   padding-top:8px;
   border-bottom:1px solid currentColor;
   font-size:15px;
-  font-weight:600;
+  font-weight:500;
+  transition:color 150ms ease;
 }
 .tlink .icon{width:16px;height:16px;transition:transform 180ms ease-out}
 
@@ -187,24 +222,28 @@ h3{
   .btn-line-light:hover{background:#fff;color:var(--navy-950)}
   .btn:hover .button-arrow .icon{transform:translateX(110%)}
   .btn:hover .button-arrow .icon + .icon{transform:translateX(0)}
+  /* currentColor drives the text, the underline and the arrow stroke together. */
+  .tlink:hover{color:var(--green-dark)}
   .tlink:hover .icon{transform:translateX(4px)}
 }
 .btn:active{transform:scale(.98)}
 
 /* Announcement ribbon and navigation */
 .topbar{
-  position:sticky;
+  position:fixed;
+  left:0;
+  right:0;
   top:0;
   z-index:var(--z-ribbon);
-  min-height:42px;
+  min-height:var(--ribbon-h);
   display:flex;
   align-items:center;
   justify-content:center;
   gap:9px;
   padding:8px 20px;
   background:var(--navy-950);
-  color:rgba(255,255,255,.88);
-  font-size:14px;
+  color:#fff;
+  font-size:16px;
   line-height:1.35;
   text-align:center;
 }
@@ -215,16 +254,18 @@ h3{
 }
 .topbar-arrow .icon{width:11px;height:11px;stroke-width:2.75}
 .nav{
-  position:sticky;
-  top:42px;
+  position:fixed;
+  left:0;
+  right:0;
+  top:var(--ribbon-h);
   z-index:var(--z-nav);
-  background:var(--navy-900);
+  background:transparent;
   color:#fff;
   border-bottom:1px solid var(--line-dark);
-  transition:background-color 180ms ease,box-shadow 180ms ease;
+  transition:background-color 220ms ease,box-shadow 220ms ease;
 }
-.nav.is-scrolled{background:rgba(7,17,31,.96);box-shadow:0 8px 24px rgba(0,0,0,.12)}
-.nav-in{height:88px;display:flex;align-items:center;gap:48px}
+.nav.is-scrolled{background:rgba(12,27,49,.97);box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.nav-in{height:var(--nav-h);display:flex;align-items:center;gap:48px}
 .brand{display:flex;align-items:center;flex:0 0 auto}
 .brand img{width:auto;height:58px}
 .nav-links{display:flex;align-items:center;gap:34px;color:rgba(255,255,255,.72);font-size:14px}
@@ -287,7 +328,10 @@ h3{
 .hero{
   position:relative;
   isolation:isolate;
-  min-height:clamp(680px,79vh,860px);
+  /* Starts below the fixed ribbon so the video is never clipped by it; the nav
+     stays transparent on top of the footage by design. */
+  margin-top:var(--ribbon-h);
+  min-height:clamp(820px,calc(100vh - var(--ribbon-h) + 60px),1100px);
   display:flex;
   align-items:center;
   overflow:hidden;
@@ -303,12 +347,14 @@ h3{
   z-index:-1;
   pointer-events:none;
   background:
-    linear-gradient(90deg,rgba(7,17,31,.94) 0%,rgba(7,17,31,.84) 38%,rgba(7,17,31,.3) 76%,rgba(7,17,31,.18) 100%),
-    linear-gradient(0deg,rgba(7,17,31,.32),rgba(7,17,31,.04));
+    linear-gradient(90deg,rgba(7,17,31,.9) 0%,rgba(7,17,31,.76) 42%,rgba(7,17,31,.25) 78%,rgba(7,17,31,.14) 100%),
+    linear-gradient(0deg,rgba(7,17,31,.3),rgba(7,17,31,.03));
 }
-.hero-in{padding-block:clamp(100px,12vw,170px)}
-.hero h1{max-width:12ch}
-.hero .lede{max-width:57ch;margin-top:28px;color:rgba(255,255,255,.78);font-size:18px}
+/* The hero already starts below the ribbon, so this only has to clear the nav. */
+.hero-in{padding-block:clamp(110px,11vh,158px) clamp(88px,10vh,124px)}
+.hero .eyebrow{color:#eef48a}
+.hero h1{max-width:12ch;line-height:calc(1.01em - 4px)}
+.hero .lede{max-width:57ch;margin-top:28px;color:rgba(255,255,255,.8);font-size:18px}
 .hero-actions{margin-top:38px;display:flex;align-items:center;gap:18px}
 
 /* Trust strip */
@@ -380,10 +426,10 @@ h3{
 .solution-copy .num{
   margin-bottom:20px;
   color:var(--green-dark);
-  font-family:var(--mono);
+  font-family:var(--label);
   font-size:12px;
-  font-weight:600;
-  letter-spacing:.08em;
+  font-weight:700;
+  letter-spacing:.05em;
   text-transform:uppercase;
 }
 .solution-copy .sub{margin-top:12px;color:var(--ink);font-size:16px;font-weight:500}
@@ -428,10 +474,10 @@ h3{
   display:block;
   margin-bottom:10px;
   color:var(--green-dark);
-  font-family:var(--mono);
+  font-family:var(--label);
   font-size:11px;
-  font-weight:600;
-  letter-spacing:.08em;
+  font-weight:700;
+  letter-spacing:.05em;
   text-transform:uppercase;
 }
 .dept h3{font-size:26px}
@@ -508,7 +554,7 @@ h3{
 #results{overflow:hidden}
 .testimonial{border:1px solid var(--line);background:#fff}
 .testimonial-viewport{overflow:hidden}
-.testimonial-track{display:flex;transition:transform 360ms var(--ease-move);will-change:transform}
+.testimonial-track{display:flex;transition:transform 520ms var(--ease-move);will-change:transform}
 .quote{
   min-width:100%;
   min-height:540px;
@@ -532,7 +578,7 @@ h3{
   color:#fff;
   font-family:var(--display);
   font-size:clamp(3rem,5vw,4.5rem);
-  font-weight:300;
+  font-weight:400;
   letter-spacing:-.045em;
   line-height:1;
 }
@@ -550,7 +596,7 @@ h3{
   color:var(--ink);
   font-family:var(--display);
   font-size:clamp(1.6rem,2.6vw,2.25rem);
-  font-weight:300;
+  font-weight:400;
   letter-spacing:-.025em;
   line-height:1.2;
 }
@@ -567,7 +613,7 @@ h3{
   font-size:13px;
   line-height:1.4;
 }
-.who b{display:block;margin-bottom:2px;color:var(--ink);font-weight:600}
+.who b{display:block;margin-bottom:2px;color:var(--ink);font-weight:500}
 .who-face{width:48px;height:48px;flex:0 0 48px;object-fit:cover;filter:grayscale(1)}
 .testimonial-controls{
   min-height:92px;
@@ -581,7 +627,7 @@ h3{
 .testimonial-status{
   min-width:42px;
   color:var(--ink-3);
-  font-family:var(--mono);
+  font-family:var(--label);
   font-size:11px;
   font-variant-numeric:tabular-nums;
   letter-spacing:.04em;
@@ -627,6 +673,10 @@ h3{
   transition:transform 180ms var(--ease-out);
 }
 .control-arrow .icon{width:20px;height:20px}
+.testimonial-toggle .icon{width:18px;height:18px}
+.testimonial-toggle [data-play-icon]{display:none}
+.testimonial-toggle[aria-pressed="true"] [data-pause-icon]{display:none}
+.testimonial-toggle[aria-pressed="true"] [data-play-icon]{display:block}
 .testimonial-arrows button:active{transform:scale(.94)}
 @media (hover:hover) and (pointer:fine){
   .testimonial-arrows button:hover{background:var(--green-soft)}
@@ -676,10 +726,10 @@ h3{
 .foot h4{
   margin-bottom:22px;
   color:var(--green);
-  font-family:var(--mono);
+  font-family:var(--label);
   font-size:11px;
-  font-weight:600;
-  letter-spacing:.09em;
+  font-weight:700;
+  letter-spacing:.05em;
   text-transform:uppercase;
 }
 .foot li{margin-bottom:12px}
@@ -693,7 +743,7 @@ h3{
   padding-top:24px;
   border-top:1px solid var(--line-dark);
   color:rgba(255,255,255,.4);
-  font-family:var(--mono);
+  font-family:var(--label);
   font-size:11px;
   letter-spacing:.04em;
 }
@@ -702,9 +752,10 @@ h3{
   display:block;
   margin-bottom:3px;
   color:rgba(255,255,255,.42);
-  font-family:var(--mono);
+  font-family:var(--label);
   font-size:10px;
-  letter-spacing:.07em;
+  font-weight:700;
+  letter-spacing:.05em;
   text-transform:uppercase;
 }
 .foot .contact a{min-height:auto;color:#fff;font-size:16px;white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -712,9 +763,9 @@ h3{
 .foot .contact-cta a{padding-bottom:3px;border-bottom:1px solid currentColor;color:rgba(255,255,255,.68);font-size:14px}
 
 @media (max-width:1040px){
-  :root{--gutter:clamp(24px,4vw,44px)}
+  :root{--gutter:clamp(24px,5vw,52px)}
   .nav-in{gap:26px}
-  .nav-links{gap:20px;font-size:13px}
+  .nav-links{gap:20px;font-size:14px}
   .solution-row{min-height:420px}
   .solution-copy{padding:50px}
   .dept article{padding:34px}
@@ -723,8 +774,8 @@ h3{
 
 @media (max-width:900px){
   .nav-toggle{display:block}
-  .nav-in{position:relative;height:76px}
-  .brand img{height:48px}
+  .nav-in{position:relative;height:72px}
+  .brand img{height:46px}
   .nav-cta{gap:8px}
   .nav-cta .btn-line-light{display:none}
   .nav-cta .btn-primary{min-height:40px;padding:10px 14px;font-size:12px}
@@ -758,23 +809,21 @@ h3{
 }
 
 @media (max-width:700px){
-  :root{--gutter:20px;--section:82px}
+  :root{--gutter:20px;--section:82px;--ribbon-h:48px}
   .topbar{
-    min-height:40px;
     justify-content:flex-start;
     overflow:hidden;
     white-space:nowrap;
     text-align:left;
-    font-size:12px;
+    font-size:14px;
   }
   .topbar span:first-child{overflow:hidden;text-overflow:ellipsis}
-  .nav{top:40px}
   h1{font-size:clamp(2.85rem,13vw,4rem)}
   h2{font-size:clamp(2.25rem,10vw,3rem)}
   .sec-head{margin-bottom:46px}
-  .hero{min-height:650px;align-items:flex-end}
+  .hero{min-height:calc(100svh - var(--ribbon-h) + 60px);align-items:flex-end}
   .hero::after{background:linear-gradient(90deg,rgba(7,17,31,.92),rgba(7,17,31,.56))}
-  .hero-in{padding-block:92px 84px}
+  .hero-in{padding-block:100px 84px}
   .hero .lede{font-size:16px}
   .hero-actions{margin-top:30px}
   .hero .btn{width:100%}
