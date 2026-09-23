@@ -237,11 +237,24 @@ h3,.h3{font-family:var(--display);font-weight:600;letter-spacing:-.02em;line-hei
 .dept h3{margin-bottom:12px}
 .dept p{color:rgba(255,255,255,.7);font-size:15px}
 
-/* ---------- stats ---------- */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:56px}
-.stat{border-top:1px solid var(--line-dark);padding-top:26px;padding-right:28px}
+/* ---------- stats ----------
+   Reads as the summary footer of the .dept grid rather than a loose row:
+   it shares the grid's bottom hairline and sits on the darker card surface. */
+.proof{margin-top:-1px;border:1px solid var(--line-dark);background:var(--surface-dark-2)}
+.proof-head{display:flex;align-items:baseline;gap:clamp(14px,2.5vw,32px);flex-wrap:wrap;
+  padding:20px 34px;border-bottom:1px solid var(--line-dark)}
+.proof-kicker{font-family:var(--mono);font-size:12.5px;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--accent)}
+.proof-note{flex:1;min-width:0;font-size:14px;line-height:1.5;color:rgba(255,255,255,.62)}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.stat{padding:32px 34px 38px;border-right:1px solid var(--line-dark)}
+.stat:last-child{border-right:0}
+.stat-tag{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:20px}
 .stat .n{font-family:var(--display);font-weight:400;letter-spacing:-.03em;line-height:1;
-  font-size:clamp(3rem,5.4vw,5rem);color:var(--accent)}
+  font-size:clamp(2.75rem,4.6vw,4.25rem);color:var(--accent);
+  font-variant-numeric:tabular-nums}
 .stat .c{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;
   text-transform:uppercase;color:rgba(255,255,255,.62);margin-top:16px;max-width:26ch}
 
@@ -327,7 +340,8 @@ h3,.h3{font-family:var(--display);font-weight:600;letter-spacing:-.02em;line-hei
   .nav-cta .btn-line-light{display:none}
   .grid-ruled,.dept,.split,.stats{grid-template-columns:1fr}
   .dept article{border-right:0}
-  .stat{padding-right:0}
+  .stat{border-right:0;border-bottom:1px solid var(--line-dark)}
+  .stat:last-child{border-bottom:0}
   .hero{min-height:auto}
 }
 @media (prefers-reduced-motion:reduce){
