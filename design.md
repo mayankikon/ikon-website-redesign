@@ -4,6 +4,29 @@ Captured 2026-09-22 from the live site via computed styles. This is a **design-s
 spec** (tokens, layout rules, component anatomy) for reuse — not a copy of Agave's
 copy, imagery, or brand marks.
 
+## Implementation update
+
+The Ikon homepage now follows the live Agave page architecture as well as these
+tokens. The current implementation is in `styles-agave.css` and uses:
+
+- a persistent announcement ribbon plus dark navigation stack;
+- a centered page canvas with patterned side rails on wide screens;
+- 90px-scale desktop display type with Geist as the licensed-font substitute;
+- 18px × 36px primary CTA padding and square corners;
+- alternating copy/product-visual bands instead of a conventional card grid;
+- a dedicated dark, gridded proof section for headline metrics;
+- one editorial case study at a time with accessible carousel controls;
+- responsive white mobile navigation modeled on Agave's compact menu.
+
+Interaction details adapt MIT patterns reviewed on 21st.dev: directional arrows
+cycle through a clipped viewport instead of simply shifting, carousel controls
+use compact icon motion and a numeric progress indicator, and touch users can
+swipe testimonials. Menu enter/exit motion follows Emil Kowalski's timing model
+(220ms enter, 160ms exit, ease-out). All motion is disabled under
+`prefers-reduced-motion`.
+
+`styles.css` is retained as the earlier design-system interpretation for comparison.
+
 ---
 
 ## 1. Design character
