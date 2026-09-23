@@ -49,7 +49,7 @@
   /* Ribbon and nav are both fixed, so the hero offset and anchor offsets derive
      from these rather than repeating the numbers. */
   --ribbon-h:50px;
-  --nav-h:74px;
+  --nav-h:86px;
   --display:'Untitled Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
   --body:var(--display);
   /* Was Geist Mono. Still the small-caps label role, just no longer monospaced. */
@@ -186,7 +186,10 @@ h3{
     transform 120ms ease;
 }
 .btn-primary{background:var(--green);color:#000}
-.btn-line-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.65)}
+/* Light scrim so the white label holds up over the hero video. Once the nav goes
+   opaque on scroll it sits on solid navy already, so the scrim is dropped. */
+.btn-line-light{background:rgba(7,17,31,.42);color:#fff;border-color:rgba(255,255,255,.65)}
+.nav.is-scrolled .btn-line-light{background:transparent}
 .btn-sm{min-height:44px;padding:12px 18px;font-size:14px}
 .button-arrow{
   position:relative;
@@ -267,7 +270,7 @@ h3{
 .nav.is-scrolled{background:rgba(12,27,49,.97);box-shadow:0 8px 24px rgba(0,0,0,.1)}
 .nav-in{height:var(--nav-h);display:flex;align-items:center;gap:48px}
 .brand{display:flex;align-items:center;flex:0 0 auto}
-.brand img{width:auto;height:58px}
+.brand img{width:auto;height:66px}
 .nav-links{display:flex;align-items:center;gap:34px;color:rgba(255,255,255,.72);font-size:14px}
 .nav-links a{
   min-height:44px;
@@ -331,7 +334,7 @@ h3{
   /* Starts below the fixed ribbon so the video is never clipped by it; the nav
      stays transparent on top of the footage by design. */
   margin-top:var(--ribbon-h);
-  min-height:clamp(820px,calc(100vh - var(--ribbon-h) + 60px),1100px);
+  min-height:clamp(800px,calc(100vh - var(--ribbon-h) + 40px),1080px);
   display:flex;
   align-items:center;
   overflow:hidden;
@@ -353,7 +356,7 @@ h3{
 /* The hero already starts below the ribbon, so this only has to clear the nav. */
 .hero-in{padding-block:clamp(110px,11vh,158px) clamp(88px,10vh,124px)}
 .hero .eyebrow{color:#eef48a}
-.hero h1{max-width:12ch;line-height:calc(1.01em - 4px)}
+.hero h1{max-width:12ch;line-height:calc(1.01em - 10px)}
 .hero .lede{max-width:57ch;margin-top:28px;color:rgba(255,255,255,.8);font-size:18px}
 .hero-actions{margin-top:38px;display:flex;align-items:center;gap:18px}
 
@@ -432,8 +435,7 @@ h3{
   letter-spacing:.05em;
   text-transform:uppercase;
 }
-.solution-copy .sub{margin-top:12px;color:var(--ink);font-size:16px;font-weight:500}
-.solution-copy>p:not(.sub){max-width:48ch;margin-top:16px;color:var(--ink-2);line-height:1.6}
+.solution-copy>p{max-width:48ch;margin-top:16px;color:var(--ink-2);line-height:1.6}
 .solution-copy .tlink{margin-top:24px}
 .solution-visual{
   min-height:420px;
@@ -821,7 +823,7 @@ h3{
   h1{font-size:clamp(2.85rem,13vw,4rem)}
   h2{font-size:clamp(2.25rem,10vw,3rem)}
   .sec-head{margin-bottom:46px}
-  .hero{min-height:calc(100svh - var(--ribbon-h) + 60px);align-items:flex-end}
+  .hero{min-height:calc(100svh - var(--ribbon-h) + 40px);align-items:flex-end}
   .hero::after{background:linear-gradient(90deg,rgba(7,17,31,.92),rgba(7,17,31,.56))}
   .hero-in{padding-block:100px 84px}
   .hero .lede{font-size:16px}
