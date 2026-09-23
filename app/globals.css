@@ -11,15 +11,15 @@
   margin: 0;
   border: 1px solid var(--line);
   overflow: hidden;
-  background: #fff;
-  aspect-ratio: 4 / 3;
-  max-height: min(640px, 70vh);
+  background: var(--surface);
+  aspect-ratio: 16 / 10;
+  max-height: min(560px, 65vh);
 }
 .page-visual img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
 }
 .split-visual {

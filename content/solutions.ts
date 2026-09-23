@@ -25,10 +25,10 @@ export const solutions: Solution[] = [
     title: "Full visibility of cars and keys",
     summary:
       "Locate any unit and its keys instantly, check battery health before a test drive, pull audit and lot-aging reports, and stay appointment-ready. No upfront device cost.",
-    homeImage: "/assets/generated/lot-management.webp",
-    homeImageAlt: "Stylized dealership lot with one vehicle highlighted by a GPS pin",
-    pageImage: "/assets/generated/lot-management.webp",
-    pageImageAlt: "Stylized dealership lot with one vehicle highlighted by a GPS pin",
+    homeImage: "/assets/sol-lot-management.png",
+    homeImageAlt: "Ikon Technologies lot management view showing vehicle locations",
+    pageImage: "/assets/illustrations/lot-management.svg",
+    pageImageAlt: "Top-down dealership lot with one vehicle tracked by GPS",
     eyebrow: "Solution",
     lede: "Map and locate vehicles and keys, set geofences, find dead batteries, track inventory aging, protect the lot, and run floor audits.",
     stats: [
@@ -79,10 +79,10 @@ export const solutions: Solution[] = [
     title: "Get stolen inventory back fast",
     summary:
       "Near-real-time GPS tracking built for rapid recovery, with active recovery support. Secures the lot and gives you leverage on insurance premiums and deductibles.",
-    homeImage: "/assets/generated/theft-recovery.webp",
-    homeImageAlt: "Night map with a green tracking path following a stolen vehicle",
-    pageImage: "/assets/generated/theft-recovery.webp",
-    pageImageAlt: "Night map with a green tracking path following a stolen vehicle",
+    homeImage: "/assets/sol-theft-recovery.png",
+    homeImageAlt: "Stolen mode alert on a dealership map",
+    pageImage: "/assets/illustrations/theft-recovery.svg",
+    pageImageAlt: "Stolen-vehicle tracking path on a dealership map",
     eyebrow: "Solution",
     lede: "Professional inventory protection that gets cars back without waiting on a paper trail, and pays for itself on the lot and after delivery.",
     stats: [
@@ -133,10 +133,10 @@ export const solutions: Solution[] = [
     title: "An F&I product customers actually use",
     summary:
       "A dealer-branded app plus a $10,000 theft benefit that is easy to present, easy to wrap, and non-cancellable. Dealers see an average PVR uplift of $323.",
-    homeImage: "/assets/generated/connected-car.webp",
-    homeImageAlt: "Car and phone exchanging phosphor-green signal arcs",
-    pageImage: "/assets/generated/connected-car.webp",
-    pageImageAlt: "Car and phone exchanging phosphor-green signal arcs",
+    homeImage: "/assets/sol-connected-car.png",
+    homeImageAlt: "Dealer-branded connected car app on a phone",
+    pageImage: "/assets/illustrations/connected-car.svg",
+    pageImageAlt: "Connected car and phone exchanging signal arcs",
     eyebrow: "Solution",
     lede: "A dealer-branded app that lets customers protect the vehicle, look after the people in it, and stay on top of car care — with your name on the home screen, not the OEM's.",
     stats: [
@@ -187,10 +187,10 @@ export const solutions: Solution[] = [
     title: "Service retention on autopilot",
     summary:
       "Mileage-triggered text campaigns reach customers at the exact moment service is due and route them straight to your scheduler. Response rates north of 32%.",
-    homeImage: "/assets/generated/smart-marketing.webp",
-    homeImageAlt: "Service bay, mileage gauge, and phone linked by green telemetry accents",
-    pageImage: "/assets/generated/smart-marketing.webp",
-    pageImageAlt: "Service bay, mileage gauge, and phone linked by green telemetry accents",
+    homeImage: "/assets/sol-smart-marketing.png",
+    homeImageAlt: "Mileage-triggered service text message campaign",
+    pageImage: "/assets/illustrations/smart-marketing.svg",
+    pageImageAlt: "Service outreach linked to mileage and a phone notification",
     eyebrow: "Solution",
     lede: "Take the guesswork out of retention. Boost customer-pay ROs, lifetime value, and the next vehicle purchase with mileage-true outreach in your brand.",
     stats: [

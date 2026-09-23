@@ -20,8 +20,8 @@ export const departments: Department[] = [
     homeBody:
       "Cars and keys found in seconds instead of minutes. Roughly 15 minutes saved per deal, and a lot that's always ready for the next appointment.",
     avatar: "/assets/illustrations/avatar-sales.svg",
-    sceneImage: "/assets/generated/lot-management.webp",
-    sceneImageAlt: "Dealership lot with one unit pinned for the sales team",
+    sceneImage: "/assets/illustrations/scene-sales.svg",
+    sceneImageAlt: "Sales floor scene with appointment-ready inventory",
     lede: "Command the front. Accelerate your sales. The team belongs on the floor closing, not playing hide and seek with keys and cars.",
     promise: "Spend more time with customers. Close faster. Look smarter on the lot.",
     stats: [
@@ -43,8 +43,8 @@ export const departments: Department[] = [
     homeBody:
       "A product with real, tangible value behind it, an app the customer opens and a theft benefit they understand, so it presents clean and stays on the contract.",
     avatar: "/assets/illustrations/avatar-fi.svg",
-    sceneImage: "/assets/generated/connected-car.webp",
-    sceneImageAlt: "Connected car and phone for the F&I desk conversation",
+    sceneImage: "/assets/illustrations/scene-fi.svg",
+    sceneImageAlt: "F&I desk scene with a customer-ready connected product",
     lede: "Secure the backend. Lock in gross. A useful app and a $10,000 theft warranty customers keep — not GAP/VSC they cancel.",
     promise: "Non-cancellable product, wrap opportunity, and reinsurance that does not hold your money hostage.",
     stats: [
@@ -66,8 +66,8 @@ export const departments: Department[] = [
     homeBody:
       "Outreach lands when the vehicle is actually due, not on a generic calendar. More ROs written, fewer customers lost to the shop down the road.",
     avatar: "/assets/illustrations/avatar-service.svg",
-    sceneImage: "/assets/generated/smart-marketing.webp",
-    sceneImageAlt: "Service bay and phone linked by mileage-true outreach",
+    sceneImage: "/assets/illustrations/scene-service.svg",
+    sceneImageAlt: "Service drive scene with mileage-true outreach",
     lede: "Fill the drive with customers who are actually due. Mileage-true texts beat postcards and the quick lube down the street.",
     promise: "Automated, dealer-branded service marketing and loaner control off the same device.",
     stats: [
@@ -89,7 +89,7 @@ export const departments: Department[] = [
     homeBody:
       "Stay connected to your inventory and your customers long after delivery, instead of handing that relationship to the OEM's app.",
     avatar: "/assets/illustrations/avatar-owner.svg",
-    sceneImage: "/assets/generated/dealer-built.webp",
+    sceneImage: "/assets/illustrations/the-loop.svg",
     sceneImageAlt: "Full dealer loop from lot through delivery, app, and service",
     lede: "Own the relationship after the sale. Velocity, gross, service capacity, and customer lifetime value on one program.",
     promise: "One device, every department, no upfront capital, and the database stays yours.",

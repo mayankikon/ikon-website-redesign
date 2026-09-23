@@ -53,7 +53,7 @@ export default function WhyChoosePage() {
         <div className="container">
           <figure className="page-visual">
             <img
-              src="/assets/generated/dealer-built.webp"
+              src="/assets/illustrations/the-loop.svg"
               alt="Lot, delivery, service, and app linked in one continuous dealer loop"
             />
           </figure>
