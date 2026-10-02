@@ -8,14 +8,17 @@
   padding-block: clamp(40px, 6vw, 72px);
 }
 .page-visual {
+  position: relative;
   margin: 0;
   border: 1px solid var(--line);
   overflow: hidden;
-  background: var(--surface);
-  aspect-ratio: 16 / 10;
-  max-height: min(560px, 65vh);
+  background: var(--navy-800);
+  min-height: 470px;
+  padding: 0;
 }
 .page-visual img {
+  position: absolute;
+  inset: 0;
   display: block;
   width: 100%;
   height: 100%;

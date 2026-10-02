@@ -53,7 +53,7 @@ export default function WhyChoosePage() {
         <div className="container">
           <figure className="page-visual">
             <img
-              src="/assets/illustrations/the-loop.svg"
+              src="/assets/ikon-loop.jpg"
               alt="Lot, delivery, service, and app linked in one continuous dealer loop"
             />
           </figure>

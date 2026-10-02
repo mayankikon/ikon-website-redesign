@@ -133,7 +133,7 @@ export default function HomePage() {
             </p>
             <figure className="why-shot">
               <img
-                src="/assets/illustrations/the-loop.svg"
+                src="/assets/ikon-loop.jpg"
                 alt="The Ikon loop: lot, delivery, app and service feeding back into the lot"
               />
             </figure>

@@ -89,7 +89,7 @@ export const departments: Department[] = [
     homeBody:
       "Stay connected to your inventory and your customers long after delivery, instead of handing that relationship to the OEM's app.",
     avatar: "/assets/illustrations/avatar-owner.svg",
-    sceneImage: "/assets/illustrations/the-loop.svg",
+    sceneImage: "/assets/ikon-loop.jpg",
     sceneImageAlt: "Full dealer loop from lot through delivery, app, and service",
     lede: "Own the relationship after the sale. Velocity, gross, service capacity, and customer lifetime value on one program.",
     promise: "One device, every department, no upfront capital, and the database stays yours.",

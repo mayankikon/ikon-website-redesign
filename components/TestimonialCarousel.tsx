@@ -5,37 +5,50 @@ import { Icon } from "./IconSprite";
 import { TextLink } from "./ArrowButton";
 import { useEffect, useRef, useState } from "react";
 
+const AUTO_ADVANCE_MS = 5000;
+
 export function TestimonialCarousel() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const swipeStartX = useRef<number | undefined>(undefined);
 
   useEffect(() => {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (reduced.matches) setIsPaused(true);
+
     const node = rootRef.current;
     if (!node) return;
+
     const observer = new IntersectionObserver(
       (entries) => setIsVisible(entries[0]?.isIntersecting ?? false),
-      { threshold: 0.35 },
+      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
     );
     observer.observe(node);
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
-    if (isPaused || !isVisible || document.hidden) return;
-    const timer = window.setTimeout(() => {
+    if (isPaused || !isVisible) return;
+
+    const advance = () => {
+      if (document.hidden) return;
       setCurrentIndex((index) => (index + 1) % testimonials.length);
-    }, 6500);
-    return () => window.clearTimeout(timer);
-  }, [currentIndex, isPaused, isVisible]);
+    };
+
+    const timer = window.setInterval(advance, AUTO_ADVANCE_MS);
+    return () => window.clearInterval(timer);
+  }, [isPaused, isVisible]);
 
   function showSlide(nextIndex: number) {
     const total = testimonials.length;
     setCurrentIndex((nextIndex + total) % total);
+  }
+
+  function pauseAndShow(nextIndex: number) {
+    setIsPaused(true);
+    showSlide(nextIndex);
   }
 
   return (
@@ -48,13 +61,11 @@ export function TestimonialCarousel() {
       onKeyDown={(event) => {
         if (event.key === "ArrowLeft") {
           event.preventDefault();
-          setIsPaused(true);
-          showSlide(currentIndex - 1);
+          pauseAndShow(currentIndex - 1);
         }
         if (event.key === "ArrowRight") {
           event.preventDefault();
-          setIsPaused(true);
-          showSlide(currentIndex + 1);
+          pauseAndShow(currentIndex + 1);
         }
       }}
       onPointerDown={(event) => {
@@ -65,15 +76,17 @@ export function TestimonialCarousel() {
         const distance = event.clientX - swipeStartX.current;
         swipeStartX.current = undefined;
         if (Math.abs(distance) < 45) return;
-        setIsPaused(true);
-        showSlide(currentIndex + (distance < 0 ? 1 : -1));
+        pauseAndShow(currentIndex + (distance < 0 ? 1 : -1));
       }}
       onPointerCancel={() => {
         swipeStartX.current = undefined;
       }}
     >
       <div className="testimonial-viewport" aria-live="off">
-        <div className="testimonial-track" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+        <div
+          className="testimonial-track"
+          style={{ transform: `translate3d(-${currentIndex * 100}%, 0, 0)` }}
+        >
           {testimonials.map((item, index) => (
             <article
               className="quote"
@@ -82,7 +95,8 @@ export function TestimonialCarousel() {
               aria-hidden={index !== currentIndex}
             >
               <figure className="quote-media">
-                <img src={item.image} alt={item.imageAlt} />
+                <img className="quote-photo" src={item.image} alt={item.imageAlt} />
+                <img className="quote-logo" src={item.logo} alt={item.logoAlt} />
                 <span className="quote-number">{item.stat}</span>
               </figure>
               <div className="quote-body">
@@ -110,7 +124,9 @@ export function TestimonialCarousel() {
       <div className="testimonial-controls">
         <div className="testimonial-progress">
           <span className="testimonial-status">
-            <span>{String(currentIndex + 1).padStart(2, "0")}</span> / 03
+            <span>{String(currentIndex + 1).padStart(2, "0")}</span>
+            {" / "}
+            {String(testimonials.length).padStart(2, "0")}
           </span>
           <div className="testimonial-dots" aria-label="Choose a testimonial">
             {testimonials.map((item, index) => (
@@ -119,10 +135,7 @@ export function TestimonialCarousel() {
                 key={item.person}
                 aria-label={`Show testimonial ${index + 1}`}
                 aria-current={index === currentIndex ? "true" : undefined}
-                onClick={() => {
-                  setIsPaused(true);
-                  showSlide(index);
-                }}
+                onClick={() => pauseAndShow(index)}
               />
             ))}
           </div>
@@ -135,16 +148,12 @@ export function TestimonialCarousel() {
             aria-pressed={isPaused}
             onClick={() => setIsPaused((value) => !value)}
           >
-            <Icon name="pause" className="icon" />
-            <Icon name="play" className="icon" />
+            {isPaused ? <Icon name="play" className="icon" /> : <Icon name="pause" className="icon" />}
           </button>
           <button
             type="button"
             aria-label="Previous testimonial"
-            onClick={() => {
-              setIsPaused(true);
-              showSlide(currentIndex - 1);
-            }}
+            onClick={() => pauseAndShow(currentIndex - 1)}
           >
             <span className="control-arrow control-arrow-left" aria-hidden="true">
               <Icon name="arrow-left" />
@@ -153,10 +162,7 @@ export function TestimonialCarousel() {
           <button
             type="button"
             aria-label="Next testimonial"
-            onClick={() => {
-              setIsPaused(true);
-              showSlide(currentIndex + 1);
-            }}
+            onClick={() => pauseAndShow(currentIndex + 1)}
           >
             <span className="control-arrow" aria-hidden="true">
               <Icon name="arrow-right" />
