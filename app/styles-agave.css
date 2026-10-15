@@ -43,6 +43,8 @@
   --surface-2:#edf2ef;
   --line:#dfe5e1;
   --line-dark:rgba(255,255,255,.14);
+  --radius:4px;
+  --radius-lg:8px;
   --container:1440px;
   --gutter:clamp(24px,5.85vw,84px);
   --section:clamp(88px,10vw,152px);
@@ -174,7 +176,7 @@ h3{
   align-items:center;
   justify-content:center;
   border:1px solid transparent;
-  border-radius:0;
+  border-radius:var(--radius);
   padding:16px 32px;
   cursor:pointer;
   font-family:var(--display);
@@ -301,7 +303,7 @@ h3{
   background:transparent;
   color:#fff;
   border:1px solid rgba(255,255,255,.6);
-  border-radius:0;
+  border-radius:var(--radius);
   cursor:pointer;
 }
 .nav-toggle-bars,
@@ -356,7 +358,7 @@ h3{
 /* The hero already starts below the ribbon, so this only has to clear the nav. */
 .hero-in{padding-block:clamp(110px,11vh,158px) clamp(88px,10vh,124px)}
 .hero .eyebrow{color:#eef48a}
-.hero h1{max-width:12ch;line-height:calc(1.01em - 10px)}
+.hero h1{max-width:12ch;font-size:calc(clamp(4rem,6.25vw,5.625rem) - 4px);line-height:calc(1.01em - 10px)}
 .hero .lede{max-width:57ch;margin-top:28px;color:rgba(255,255,255,.8);font-size:18px}
 .hero-actions{margin-top:38px;display:flex;align-items:center;gap:18px}
 
@@ -399,6 +401,8 @@ h3{
 .solution-stack{display:grid;gap:80px}
 .solution-row{
   position:relative;
+  overflow:hidden;
+  border-radius:var(--radius-lg);
   min-height:470px;
   display:flex;
   align-items:stretch;
@@ -414,18 +418,6 @@ h3{
   align-items:flex-start;
   justify-content:center;
   padding:clamp(44px,6vw,88px);
-}
-.solution-copy::before{
-  content:"";
-  position:absolute;
-  left:-1px;
-  top:-1px;
-  bottom:-1px;
-  width:3px;
-  background:var(--green);
-  transform:scaleY(0);
-  transform-origin:bottom;
-  transition:transform 220ms var(--ease-out);
 }
 .solution-copy .num{
   margin-bottom:20px;
@@ -463,12 +455,11 @@ h3{
 .solution-row-reverse .solution-copy{order:2}
 @media (hover:hover) and (pointer:fine){
   .solution-row:hover{border-color:rgba(8,12,16,.26)}
-  .solution-row:hover .solution-copy::before{transform:scaleY(1);transform-origin:top}
 }
 
 /* Department impact */
 .departments{background:#fff}
-.dept{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+.dept{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
 .dept article{
   min-height:250px;
   display:flex;
@@ -480,7 +471,7 @@ h3{
 }
 .dept article:nth-child(2n){border-right:0}
 .dept article:nth-last-child(-n+2){border-bottom:0}
-.face{width:58px;height:58px;flex:0 0 58px;object-fit:cover;background:var(--surface);border:1px solid var(--line)}
+.face{width:58px;height:58px;flex:0 0 58px;object-fit:cover;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
 .dept .role{
   display:block;
   margin-bottom:10px;
@@ -545,7 +536,7 @@ h3{
 /* Why */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(56px,8vw,120px);align-items:start}
 .split .lede{margin-top:24px}
-.why-shot{margin-top:40px;border:1px solid var(--line);overflow:hidden}
+.why-shot{margin-top:40px;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
 .why-shot img{width:100%;height:auto}
 .pillars{border-top:1px solid var(--line)}
 .pillars li{position:relative;padding:30px 0 30px 48px;border-bottom:1px solid var(--line)}
@@ -565,6 +556,7 @@ h3{
 #results{overflow:hidden}
 .testimonial{
   border:1px solid var(--line);
+  border-radius:var(--radius-lg);
   background:#fff;
   overflow:hidden;
 }
@@ -644,6 +636,7 @@ h3{
 .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
 .chip{
   padding:7px 10px;
+  border-radius:var(--radius);
   background:var(--green-soft);
   color:#2f4937;
   font-size:12px;
@@ -672,7 +665,7 @@ h3{
   line-height:1.4;
 }
 .who b{display:block;margin-bottom:2px;color:var(--ink);font-weight:500}
-.who-face{width:48px;height:48px;flex:0 0 48px;object-fit:cover;filter:grayscale(1)}
+.who-face{width:48px;height:48px;flex:0 0 48px;object-fit:cover;filter:grayscale(1);border-radius:var(--radius)}
 .testimonial-controls{
   min-height:92px;
   display:flex;
@@ -874,6 +867,7 @@ h3{
   }
   .topbar span:first-child{overflow:hidden;text-overflow:ellipsis}
   h1{font-size:clamp(2.85rem,13vw,4rem)}
+  .hero h1{font-size:calc(clamp(2.85rem,13vw,4rem) - 4px)}
   h2{font-size:clamp(2.25rem,10vw,3rem)}
   .sec-head{margin-bottom:46px}
   .hero{min-height:calc(100svh - var(--ribbon-h) + 40px);align-items:flex-end}

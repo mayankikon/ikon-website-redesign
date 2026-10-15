@@ -55,8 +55,8 @@ icons inherit `currentColor` and can be resized per context. Directional arrows 
 A "serious-software-for-a-physical-industry" look:
 
 - **Bright white canvas** broken by **full-bleed near-black-navy slabs**.
-- **Zero border radius.** Every button, card, chip, input and image is a sharp
-  rectangle. This is the single most identity-defining rule of the system.
+- **Two radii only.** `--radius` (4px) for buttons, chips, inputs and avatars;
+  `--radius-lg` (8px) for large cards, panels, forms and image frames. Never round further.
 - **Huge, light-weight display type** with tight negative tracking, set against
   small uppercase monospace eyebrows.
 - **One loud accent** (acid green) used sparingly — primary CTA, numerals, icon
@@ -174,7 +174,7 @@ Spacing ramp: `4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 96 / 140`.
 
 ### Button — primary
 ```
-background: var(--accent);  color: #000;  border-radius: 0;
+background: var(--accent);  color: #000;  border-radius: var(--radius);
 padding: 14px 28px;  font-size: 16px;  font-weight: 600;
 hover: background darkens ~8%;  transition 160ms ease
 ```
@@ -182,7 +182,7 @@ hover: background darkens ~8%;  transition 160ms ease
 ### Button — ghost (on dark)
 ```
 background: transparent;  color: #fff;  border: 1px solid rgba(255,255,255,.3);
-padding: 9px 14px;  font-size: 12.5px;  font-weight: 600;  radius: 0
+padding: 9px 14px;  font-size: 12.5px;  font-weight: 600;  radius: var(--radius)
 ```
 
 ### Text link "Learn more"

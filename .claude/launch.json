@@ -3,6 +3,12 @@
   "autoPort": true,
   "configurations": [
     {
+      "name": "next-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3010
+    },
+    {
       "name": "static",
       "runtimeExecutable": "sh",
       "runtimeArgs": ["-c", "python3 -m http.server $PORT"],

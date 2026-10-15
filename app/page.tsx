@@ -13,7 +13,7 @@ export default function HomePage() {
         <HeroVideo />
         <div className="container hero-in">
           <span className="eyebrow">Lot operations &amp; customer engagement for dealerships</span>
-          <h1>Know where every car, key and customer is</h1>
+          <h1>Agentic AI platform for lot optimization and customer retention</h1>
           <p className="lede">
             Ikon Technologies connects your lot, your F&amp;I office and your service drive to one
             telematics platform, so vehicles are found in seconds, stolen inventory comes back, and

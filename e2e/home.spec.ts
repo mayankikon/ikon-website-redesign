@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test.describe("Homepage", () => {
   test("sends Get a demo to the request form", async ({ page }) => {
     await page.goto("/");
-    await expect(page.getByRole("heading", { name: /know where every car/i })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /agentic AI platform for lot optimization/i })).toBeVisible();
     await page.getByRole("link", { name: "Get a demo" }).first().click();
     await expect(page).toHaveURL(/request-a-demo/);
     await expect(page.getByRole("heading", { name: /boost PVR/i })).toBeVisible();

@@ -9,6 +9,7 @@
 }
 .page-visual {
   position: relative;
+  border-radius: var(--radius-lg);
   margin: 0;
   border: 1px solid var(--line);
   overflow: hidden;
@@ -325,6 +326,7 @@
 }
 .lead-form {
   background: var(--white);
+  border-radius: var(--radius-lg);
   color: var(--ink);
   padding: clamp(24px, 3vw, 36px);
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -352,7 +354,7 @@
   font: inherit;
   padding: 12px 14px;
   border: 1px solid var(--line);
-  border-radius: 0;
+  border-radius: var(--radius);
   background: #fff;
   color: var(--ink);
   min-height: 44px;
@@ -401,6 +403,7 @@
 }
 .choice-card {
   padding: 28px 28px 32px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--line-dark);
   min-height: 280px;
   display: flex;
