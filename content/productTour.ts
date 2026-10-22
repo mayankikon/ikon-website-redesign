@@ -9,7 +9,6 @@ export type TourItem = {
   href: string;
   /** Name of the page `href` opens, for the card's link. */
   linkLabel: string;
-  icon: string;
   screen?: string;
   screenAlt: string;
 };
@@ -27,7 +26,6 @@ export const webTour: TourItem[] = [
     body: "A live map of every unit on the lot, inventory status and aging, and alerts when a unit leaves the perimeter.",
     href: "/lot-management",
     linkLabel: "Lot Management",
-    icon: "layers",
     screenAlt: "Lot management dashboard with live vehicle map",
   },
   {
@@ -36,7 +34,6 @@ export const webTour: TourItem[] = [
     body: "Mileage-triggered, dealer-branded service campaigns, and the ROs they bring back to the drive.",
     href: "/smart-marketing",
     linkLabel: "Smart Marketing",
-    icon: "handshake",
     screenAlt: "Smart Marketing campaigns dashboard",
   },
   {
@@ -45,7 +42,6 @@ export const webTour: TourItem[] = [
     body: "Bluetooth key tracking shows where every key is, so the next appointment never waits on a hunt.",
     href: "/lot-management",
     linkLabel: "Lot Management",
-    icon: "key",
     screenAlt: "Key Finder view locating a vehicle's keys",
   },
   {
@@ -54,7 +50,6 @@ export const webTour: TourItem[] = [
     body: "One-touch floorplan audits from 24/7 asset visibility: no clipboard walk, and reporting that stays accurate.",
     href: "/lot-management",
     linkLabel: "Lot Management",
-    icon: "clipboard-check",
     screenAlt: "Lot Audit view with floorplan audit report",
   },
 ];
@@ -66,7 +61,6 @@ export const mobileTour: TourItem[] = [
     body: "Your team’s Toolbox on the lot: find cars and keys, check battery health and run audits from a phone.",
     href: "/lot-management",
     linkLabel: "Lot Management",
-    icon: "wrench",
     screenAlt: "Toolbox mobile app for dealership staff",
   },
   {
@@ -75,7 +69,6 @@ export const mobileTour: TourItem[] = [
     body: "Your store’s app on your customers’ phones: find the car, Stolen Mode, service reminders and booking.",
     href: "/connected-car",
     linkLabel: "Connected Car",
-    icon: "smartphone",
     screenAlt: "Dealer-branded Connect app home screen",
   },
 ];

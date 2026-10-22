@@ -13,15 +13,10 @@ export const metadata: Metadata = {
 function TourMeta({ item }: { item: TourItem }) {
   return (
     <div className="tour-meta">
-      <span className="tour-icon" aria-hidden="true">
-        <Icon name={item.icon} />
-      </span>
-      <div>
-        <span className="tour-product">{item.product}</span>
-        <h3>{item.title}</h3>
-        <p>{item.body}</p>
-        <TextLink href={item.href}>{`Explore ${item.linkLabel}`}</TextLink>
-      </div>
+      <span className="tour-product">{item.product}</span>
+      <h3>{item.title}</h3>
+      <p>{item.body}</p>
+      <TextLink href={item.href}>{`Explore ${item.linkLabel}`}</TextLink>
     </div>
   );
 }
