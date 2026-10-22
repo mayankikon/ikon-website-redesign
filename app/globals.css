@@ -645,10 +645,10 @@
   object-position: top center;
 }
 .device-display .device-screen {
-  left: 1.3%;
-  top: 1.575%;
-  width: 97.38%;
-  height: 66.47%;
+  left: 2.064%;
+  top: 2.85%;
+  width: 95.27%;
+  height: 69.52%;
   border-radius: 2px;
 }
 .device-phone .device-screen {
@@ -686,23 +686,38 @@
 }
 .tour-hero-devices {
   position: relative;
-  padding: 0 14% 6% 0;
 }
+/* Proportions after the reference composite: the display takes 91% of the
+   width; each phone is ~23% of the display's width, set 104px below the
+   panel top and overhanging its right edge.
+   The stand fades into the hero. */
 .tour-hero-devices .device-display {
-  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.35));
+  width: 90.9%;
+  /* The stand starts fading where it leaves the panel (75.4% down the
+     display) and is gone by 92%. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 75.4%, transparent 92%);
+  mask-image: linear-gradient(to bottom, #000 75.4%, transparent 92%);
 }
 .tour-hero-phone {
   position: absolute;
-  bottom: -4%;
-  width: 21%;
+  top: calc(11.6% + 104px);
+  width: 21.1%;
   filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.45));
 }
-
 .tour-hero-phone-toolbox {
-  right: 23%;
+  right: calc(23% - 24px);
 }
 .tour-hero-phone-connect {
-  right: 0;
+  right: -24px;
+}
+@media (max-width: 620px) {
+  /* No gutter to spare on phones: keep the pair inside the screen. */
+  .tour-hero-phone-toolbox {
+    right: 23%;
+  }
+  .tour-hero-phone-connect {
+    right: 0;
+  }
 }
 
 .tour-section {

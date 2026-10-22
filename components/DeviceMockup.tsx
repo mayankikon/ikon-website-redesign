@@ -1,7 +1,7 @@
-// Device frames from the Apple Devices Mockup Bundle (cropped SVGs in
-// /public/assets/devices). The screen sits on top of the frame at the exact
-// position of the bundle's "Place your design here" area; with no `screen`
-// it stays blank.
+// Device frames in /public/assets/devices: the Studio Display cut out of the
+// Studio Display mockup PSD, and the iPhone 16 Pro from the Apple Devices
+// Mockup Bundle. The screen sits on top of the frame at the exact position of
+// each mockup's screen layer; with no `screen` it stays blank.
 
 type DeviceProps = {
   screen?: string;
@@ -20,7 +20,7 @@ function Screen({ screen, screenAlt }: Pick<DeviceProps, "screen" | "screenAlt">
 export function DisplayMockup({ screen, screenAlt, className = "" }: DeviceProps) {
   return (
     <div className={`device device-display ${className}`.trim()}>
-      <img className="device-frame" src="/assets/devices/pro-display.svg" alt="" aria-hidden="true" />
+      <img className="device-frame" src="/assets/devices/studio-display.webp" width={1502} height={1158} alt="" aria-hidden="true" />
       <Screen screen={screen} screenAlt={screenAlt} />
     </div>
   );
