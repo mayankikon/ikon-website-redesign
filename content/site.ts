@@ -18,6 +18,7 @@ export const externalApps = {
 export const navLinks = [
   { href: "/#solutions", label: "Solutions" },
   { href: "/#departments", label: "By Department" },
+  { href: "/product-tour", label: "Product Tour" },
   { href: "/why-choose-ikon", label: "Why Ikon Technologies" },
   { href: "/#results", label: "Results" },
   { href: "/dealers-digest", label: "Resources" },

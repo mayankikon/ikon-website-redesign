@@ -820,17 +820,19 @@ h3{
   .foot-grid{grid-template-columns:1fr 1fr}
 }
 
-@media (max-width:900px){
+/* Six nav links: tighten the spacing first, then collapse into the menu. */
+@media (max-width:1320px){
+  .nav-in{gap:32px}
+  .nav-links{gap:24px}
+}
+
+@media (max-width:1160px){
   .nav-toggle{display:block}
-  .nav-in{position:relative;height:72px}
-  .brand img{height:46px}
-  .nav-cta{gap:8px}
-  .nav-cta .btn-line-light{display:none}
-  .nav-cta .btn-primary{min-height:40px;padding:10px 14px;font-size:12px}
+  .nav-in{position:relative}
   .nav-links{
     position:absolute;
-    left:calc(-1 * var(--gutter));
-    right:calc(-1 * var(--gutter));
+    left:0;
+    right:0;
     top:100%;
     max-height:calc(100vh - 110px);
     display:flex;
@@ -847,6 +849,14 @@ h3{
   .nav-links a{min-height:54px;border-bottom:1px solid var(--line);font-size:15px}
   .nav-links a::after{display:none}
   .nav-links a:last-child{border-bottom:0}
+}
+
+@media (max-width:900px){
+  .nav-in{position:relative;height:72px}
+  .brand img{height:46px}
+  .nav-cta{gap:8px}
+  .nav-cta .btn-line-light{display:none}
+  .nav-cta .btn-primary{min-height:40px;padding:10px 14px;font-size:12px}
   .solution-row{display:grid}
   .solution-copy,.solution-visual{width:100%}
   .solution-copy{order:0!important}
