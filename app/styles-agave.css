@@ -358,7 +358,7 @@ h3{
 /* The hero already starts below the ribbon, so this only has to clear the nav. */
 .hero-in{padding-block:clamp(110px,11vh,158px) clamp(88px,10vh,124px)}
 .hero .eyebrow{color:#eef48a}
-.hero h1{max-width:12ch;font-size:calc(clamp(4rem,6.25vw,5.625rem) - 4px);line-height:calc(1.01em - 10px)}
+.hero h1{max-width:17ch;font-size:calc(clamp(4rem,6.25vw,5.625rem) - 20px);line-height:calc(1.01em - 4px)}
 .hero .lede{max-width:57ch;margin-top:28px;color:rgba(255,255,255,.8);font-size:18px}
 .hero-actions{margin-top:38px;display:flex;align-items:center;gap:18px}
 
@@ -877,7 +877,7 @@ h3{
   }
   .topbar span:first-child{overflow:hidden;text-overflow:ellipsis}
   h1{font-size:clamp(2.85rem,13vw,4rem)}
-  .hero h1{font-size:calc(clamp(2.85rem,13vw,4rem) - 4px)}
+  .hero h1{font-size:calc(clamp(2.85rem,13vw,4rem) - 20px);line-height:calc(1em + 6px)}
   h2{font-size:clamp(2.25rem,10vw,3rem)}
   .sec-head{margin-bottom:46px}
   .hero{min-height:calc(100svh - var(--ribbon-h) + 40px);align-items:flex-end}
