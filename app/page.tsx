@@ -20,6 +20,9 @@ export default function HomePage() {
           </p>
           <div className="hero-actions">
             <ArrowButton href="/request-a-demo">Get a demo</ArrowButton>
+            <ArrowButton href="/dealer-login" variant="line-light">
+              Dealer Login
+            </ArrowButton>
           </div>
         </div>
       </section>
